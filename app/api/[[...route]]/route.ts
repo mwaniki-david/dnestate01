@@ -71,7 +71,8 @@ import  unit from './unit';
 
 
 export const runtime = 'edge';
-export const app = new Hono().basePath('/api');
+// export const app = new Hono().basePath('/api');
+const app: Hono = new Hono().basePath('/api');
 
 export const  routes = app
 .route("/tenants", tenant )
@@ -87,29 +88,34 @@ export const POST = handle(app);
 export const PATCH = handle(app);
 export const DELETE = handle(app);
 
-export type AppType = typeof routes;
+export type AppType = typeof app;
 
 
 // import { Hono } from 'hono';
 // import { handle } from 'hono/vercel';
+
 // import tenant from './tenant';
+// import building from './building';
+// import buildingOwner from './buildingOwner';
+// import houses from './houses';
+// import unit from './unit';
 
-// export const runtime = 'edge';  // Define runtime for Vercel's Edge functions
+// export const runtime = 'edge';
 
-// // Create a Hono instance with base path
-// export const app = new Hono().basePath('/api');
+// const app = new Hono().basePath('/api');
 
-// // Define the routes by mounting the 'tenant' module at the '/tenants' path
-// const routes = app
-// .route("/tenants", tenant);
+// // Define routes
+// app
+//   .route('/tenants', tenant)
+//   .route('/building', building)
+//   .route('/buildingOwner', buildingOwner)
+//   .route('/houses', houses)
+//   .route('/unit', unit);
 
-// // Export handlers for GET and POST requests using the handle function
 // export const GET = handle(app);
 // export const POST = handle(app);
+// export const PATCH = handle(app);
+// export const DELETE = handle(app);
 
-// // Export the type for the entire app, not just routes
+// // Use `app` directly for type inference
 // export type AppType = typeof app;
-
-
-
-
